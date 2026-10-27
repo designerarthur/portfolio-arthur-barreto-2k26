@@ -3517,7 +3517,7 @@ document.addEventListener("click", function (e) {
   function r8(n) { return Math.round(n / 8) * 8; }
   var view = "vitrine";
   var shown = cards.slice();
-  var cur = Math.min(1, cards.length - 1); /* opens on the second case (Uber) */
+  var cur = 0; /* opens on the first case (magicfeet) */
   var cw = 0, revealIO = null;
   function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
   function pad(n) { return (n < 10 ? "0" : "") + n; }
@@ -3697,7 +3697,7 @@ document.addEventListener("click", function (e) {
     var emptyEl = document.getElementById("works-empty");
     if (emptyEl) { emptyEl.hidden = shown.length > 0; stage.hidden = shown.length === 0; }
     countEl.textContent = shown.length === 0 ? "No projects yet" : shown.length + " of " + cards.length + " projects";
-    cur = !active.length ? Math.min(1, shown.length - 1) : 0;
+    cur = 0;
     layout();
   }
   segs.forEach(function (btn) {
