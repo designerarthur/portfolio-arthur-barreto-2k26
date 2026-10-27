@@ -1,0 +1,22 @@
+PORTFOLIO 2K26 - pacote para subir na Vercel (27/10/2026)
+
+O QUE TEM AQUI
+- index.html   versao final (Next Case, dock, auditoria de acessibilidade)
+- vercel.json  cache e cabecalhos (igual ao do deploy de 26/10)
+- assets/ e media/  imagens e videos
+
+FALTAM 3 ARQUIVOS (muito grandes para este pacote). Copie da sua pasta local
+(sao os mesmos do deploy de 26/10, em src/...):
+- media/hero-tall.mp4         (12 MB)
+- media/hero-wide.mp4         (13 MB)
+- assets/video/uber.mp4       (6,2 MB)
+Sem eles, o video da hero e o do card da Uber Conta nao carregam.
+
+COMO SUBIR
+Com git: copie este conteudo para a pasta do repositorio (index.html e vercel.json
+na raiz, mais assets/ e media/), adicione os 3 videos, git add -A, commit e push na main.
+Sem git: nesta pasta (com os 3 videos) rode  npx vercel --prod
+
+DEPOIS DO DEPLOY
+Teste Works, "Notify me" e o fim do case da magicfeet. Os botoes "View Case" ainda
+apontam para artefatos privados; troque pelos links do site quando os cases estiverem publicados.
