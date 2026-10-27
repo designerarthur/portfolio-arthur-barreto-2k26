@@ -2473,7 +2473,7 @@ button.mm-row { cursor: pointer; }
                 <p class="card-note is-live" role="note"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="10" r="7.25"/><path d="M6.75 10.25l2.25 2.25 4.25-4.5"/></svg><span><b>Case study available.</b> See the full process and results.</span></p>
               </div>
               <div class="work-side">
-                <div class="work-cta"><a class="btn-case" href="https://claude.ai/artifact/YYJiKcLzNwdLf46mNiNLFR" target="_blank" rel="noopener">View Case<svg class="arr" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a></div>
+                <div class="work-cta"><a class="btn-case" href="/uber">View Case<svg class="arr" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a></div>
               </div>
             </div>
           </article>
@@ -5109,7 +5109,7 @@ html.bp-vt::view-transition-new(root) { animation: bpReveal 0.95s cubic-bezier(0
   function plain(h) { var t = document.createElement("textarea"); t.innerHTML = h; return t.value; }
   var ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>';
   var CASES = [
-    { title: "Cr&eacute;dito Pessoal &middot; digio &times; Uber Conta", label: "Case 02", live: true, href: "https://claude.ai/artifact/YYJiKcLzNwdLf46mNiNLFR", img: "assets/video/uber-poster.jpg", vid: "assets/video/uber.mp4", g: ["#CFF0E4", "#BFE3F7"], tags: ["Banking", "Fintech", "Mobile"], desc: "Fast cashout and a mobile-first app." },
+    { title: "Cr&eacute;dito Pessoal &middot; digio &times; Uber Conta", label: "Case 02", live: true, href: "/uber", img: "assets/video/uber-poster.jpg", vid: "assets/video/uber.mp4", g: ["#CFF0E4", "#BFE3F7"], tags: ["Banking", "Fintech", "Mobile"], desc: "Fast cashout and a mobile-first app." },
     { title: "Filters &middot; Authentic Feet, Artwalk, magicfeet", label: "Case 03", img: "assets/filters/cover.jpg", vid: "", g: ["#FADADD", "#E4D4F4"], tags: ["Retail", "Filters", "UX"], desc: "One filter experience across three footwear brands, on desktop and mobile." },
     { title: "Onboarding and Acquisition", label: "Case 04", img: "", vid: "", g: ["#CFF0E4", "#BFE3F7"], tags: ["Onboarding", "Login", "Acquisition"], desc: "Login and sign-up with fewer steps and clearer feedback." },
     { title: "Nike Black Friday LP", label: "Case 05", img: "assets/next/bf.jpg", vid: "", g: ["#FCEFB4", "#FADADD"], tags: ["Campaign", "Landing page", "CRO"], desc: "A campaign landing page built to turn attention into purchase." },
@@ -5133,7 +5133,7 @@ html.bp-vt::view-transition-new(root) { animation: bpReveal 0.95s cubic-bezier(0
     media.appendChild(L); layers.push(L); vids.push(bv);
     var C = document.createElement("div"); C.className = "sw-copy"; C.setAttribute("aria-hidden", "true"); C.setAttribute("inert", "");
     var cta = p.live
-      ? '<a class="sw-btn" href="' + p.href + '" target="_blank" rel="noopener">View case ' + ARR + '</a>'
+      ? '<a class="sw-btn" href="' + p.href + '">View case ' + ARR + '</a>'
       : '<button class="sw-btn" type="button" data-notify="' + plain(p.title) + '">' + (p.restricted ? "Request access " : "Notify me ") + ARR + '</button>';
     C.innerHTML = '<span class="sw-badge' + (p.live ? "" : " soon") + '"><i></i>' + (p.live ? "Live" : "Content being updated") + '</span><h3>' + p.title + '</h3><p>' + p.desc + '</p><ul class="sw-tags">' + p.tags.map(function (t) { return "<li>" + t + "</li>"; }).join("") + '</ul><div class="sw-cta">' + cta + '</div>';
     copies.appendChild(C); cps.push(C);
@@ -5173,8 +5173,11 @@ html.bp-vt::view-transition-new(root) { animation: bpReveal 0.95s cubic-bezier(0
   }
   function restart() { clearTimeout(timer); if (user || reduce || !inView || LIVE < 2) return; timer = setTimeout(function () { select(nextLive(sel), false); }, DUR); }
   function takeOver() { if (user) return; user = true; row.classList.remove("auto"); clearTimeout(timer); }
+  /* Opening a case: the card, the billboard and the button all do the same thing, through the button so the dive runs. */
+  function openCase(i) { var a = cps[i] && cps[i].querySelector("a.sw-btn[href]"); if (a) a.click(); }
+  bb.addEventListener("click", function (e) { if (e.target.closest("a, button") || sel < 0 || !CASES[sel].live) return; openCase(sel); });
   cards.forEach(function (c, i) {
-    c.addEventListener("click", function () { if (!CASES[i].live) return; takeOver(); select(i, true); });
+    c.addEventListener("click", function () { if (!CASES[i].live) return; takeOver(); select(i, true); openCase(i); });
     c.addEventListener("keydown", function (e) {
       var d = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0; if (!d) return;
       e.preventDefault(); var n = Math.min(CASES.length - 1, Math.max(0, i + d)); takeOver(); cards[n].focus(); if (CASES[n].live) select(n, false);
@@ -5637,4 +5640,5 @@ a, button, [role="button"], summary { -webkit-tap-highlight-color: transparent; 
   html body .works-dots button { width: 36px; }
 }
 </style>
+<style id="case-open-cursor">#csw-bb{cursor:pointer}</style>
 </body></html>
