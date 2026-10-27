@@ -5610,4 +5610,31 @@ html.bp-vt::view-transition-new(root) { animation: bpReveal 0.95s cubic-bezier(0
 .bp-article .bp-body > .bp-code.bpr.is-in, .bp-article .bp-body > .bp-take.bpr.is-in { opacity: 1; }
 .bp-code:focus-visible, .sw-row--lp:focus-visible { outline: 3px solid var(--focus, #2997FF); outline-offset: 3px; }
 </style>
+<style id="mobile-touch-v1">
+/* Mobile hardening: stable text size, no tap flash, and 44x44 px touch targets on touch screens
+   (visual size stays the same; hit areas grow with invisible padding). */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+a, button, [role="button"], summary { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+@media (pointer: coarse), (max-width: 820px) {
+  html body .menu-btn { min-width: 44px; min-height: 44px; }
+  html body .btn-case, html body .works-stage .btn-case, html body .btn-case.blog-link { min-height: 44px; }
+  html body .footer-links a { min-height: 44px; }
+  html body .works-bar .seg.view-seg { height: 52px; min-height: 52px; padding: 3px; }
+  html body .works-bar .seg.view-seg .seg-item { width: 44px; height: 44px; min-width: 44px; border-radius: 22px; }
+  html body .works-bar .seg.view-seg .seg-item::after { content: none; }
+  html body .menu-btn { flex: none; }
+  html body .works-dots button { width: 44px; height: 44px; border-radius: 22px; }
+  .works-bar .seg.view-seg .seg-item, .seg-item { position: relative; }
+  .works-bar .seg.view-seg .seg-item::after, .pv-toggle::after { content: ""; position: absolute; inset: -6px; }
+  .pv-toggle { position: relative; }
+  .pv-toggle::after { inset: -9px; }
+}
+@media (max-width: 360px) {
+  html body .nav-content { gap: 8px; padding-inline: 4px; }
+  html body .nav-content .brand { padding-inline: 8px; }
+  html body .nav-right { gap: 4px; }
+  html body .nav-right .switch { padding-inline: 4px; }
+  html body .works-dots button { width: 36px; }
+}
+</style>
 </body></html>
