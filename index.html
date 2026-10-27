@@ -499,6 +499,87 @@
 #cs-next .sw-cx .lock svg { width: clamp(32px, 20%, 56px); }
 </style>
 
+<style id="ct-css">
+/* Case transition: the next case rises from the bottom with parallax, fade and a dark overlay; the new page takes over under it. */
+.casetr{position:fixed;inset:0;z-index:2147483000;overflow:hidden;visibility:hidden;pointer-events:none;background:rgba(11,11,12,0);transition:background-color .7s cubic-bezier(.22,1,.36,1);font-family:"SF Pro Display","SF Pro",-apple-system,BlinkMacSystemFont,"Inter","Segoe UI",system-ui,sans-serif;--ctp:clamp(24px,6vw,96px)}
+.casetr.on{visibility:visible;pointer-events:auto}
+.casetr.go,.casetr.hold{background:rgba(11,11,12,.72)}
+.casetr-sheet{position:absolute;inset:0;background:#0B0B0C;border-radius:32px 32px 0 0;overflow:hidden;transform:translate3d(0,100%,0);opacity:0;will-change:transform,opacity;transition:transform .85s cubic-bezier(.22,1,.36,1),opacity .6s ease,border-radius .85s cubic-bezier(.22,1,.36,1)}
+.casetr-img{position:absolute;inset:-8% 0;background-size:cover;background-position:center;transform:translate3d(0,16%,0) scale(1.14);will-change:transform;transition:transform 1.05s cubic-bezier(.22,1,.36,1)}
+.casetr-shade{position:absolute;inset:0;background:linear-gradient(0deg,rgba(11,11,12,.94) 0%,rgba(11,11,12,.38) 52%,rgba(11,11,12,.62) 100%)}
+.casetr-copy{position:absolute;left:var(--ctp);right:var(--ctp);bottom:max(12vh,48px);color:#fff;transform:translate3d(0,48px,0);opacity:0;transition:transform .9s cubic-bezier(.22,1,.36,1) .12s,opacity .7s ease .18s}
+.casetr-kick{margin:0 0 12px;font-size:.875rem;font-weight:600;letter-spacing:.02em;color:rgba(255,255,255,.7)}
+.casetr-title{margin:0;max-width:16ch;font-size:clamp(2.25rem,7vw,5rem);line-height:1.04;font-weight:700;letter-spacing:-.035em;text-wrap:balance}
+.casetr-bar{margin-top:28px;height:3px;max-width:240px;border-radius:2px;background:rgba(255,255,255,.2);overflow:hidden}
+.casetr-bar i{display:block;height:100%;width:100%;background:#fff;transform:scaleX(0);transform-origin:left}
+.casetr.go .casetr-sheet,.casetr.hold .casetr-sheet{transform:none;opacity:1;border-radius:0}
+.casetr.go .casetr-img,.casetr.hold .casetr-img{transform:translate3d(0,0,0) scale(1)}
+.casetr.go .casetr-copy,.casetr.hold .casetr-copy{transform:none;opacity:1}
+.casetr.go .casetr-bar i{transition:transform .9s cubic-bezier(.4,0,.2,1) .1s;transform:scaleX(1)}
+.casetr.hold .casetr-bar i{transform:scaleX(1)}
+/* arrival: the overlay is already up; it lifts away and the page settles in */
+.casetr.hold{transition:none}
+.casetr.hold .casetr-sheet,.casetr.hold .casetr-img,.casetr.hold .casetr-copy{transition:none}
+.casetr.out{background:rgba(11,11,12,0);transition:background-color .9s ease}
+.casetr.out .casetr-sheet{transform:translate3d(0,-6vh,0);opacity:0;transition:transform 1s cubic-bezier(.22,1,.36,1),opacity .9s ease}
+.casetr.out .casetr-img{transform:translate3d(0,-4%,0) scale(1.06);transition:transform 1.1s cubic-bezier(.22,1,.36,1)}
+.casetr.out .casetr-copy{transform:translate3d(0,-24px,0);opacity:0;transition:transform .7s cubic-bezier(.22,1,.36,1),opacity .5s ease}
+@keyframes ctText{from{opacity:0;transform:translate3d(0,28px,0)}to{opacity:1;transform:none}}
+html.casetr-in :is(h1,#cs-title,.hero-copy .lead,.cs-hero .cs-lead){animation:ctText .95s cubic-bezier(.22,1,.36,1) .25s backwards}
+@media (prefers-reduced-motion:reduce){.casetr{display:none!important}html.casetr-in :is(h1,#cs-title,.hero-copy .lead,.cs-hero .cs-lead){animation:none}}
+</style>
+<script id="ct-js">
+(function () {
+  var KEY = "ct-case", reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var root = document.documentElement, busy = false, el = null;
+  function build(d) {
+    var n = document.createElement("div"); n.className = "casetr"; n.setAttribute("aria-hidden", "true");
+    n.innerHTML = '<div class="casetr-sheet"><div class="casetr-img"></div><div class="casetr-shade"></div><div class="casetr-copy"><p class="casetr-kick"></p><h2 class="casetr-title"></h2><div class="casetr-bar"><i></i></div></div></div>';
+    if (d.img) n.querySelector(".casetr-img").style.backgroundImage = 'url("' + d.img + '")';
+    n.querySelector(".casetr-kick").textContent = d.kick || "Next case";
+    n.querySelector(".casetr-title").textContent = d.title || "";
+    (document.body || root).appendChild(n); return n;
+  }
+  /* Arrival: if the reader came through a case transition, the overlay is up before first paint */
+  try {
+    var raw = sessionStorage.getItem(KEY); sessionStorage.removeItem(KEY);
+    var d = raw && JSON.parse(raw);
+    if (d && Date.now() - d.t < 10000 && !reduce) {
+      el = build(d); el.classList.add("on", "hold"); root.classList.add("casetr-in");
+      var start = Date.now(), done = false;
+      var lift = function () {
+        if (done) return; done = true;
+        var wait = Math.max(0, 550 - (Date.now() - start));
+        setTimeout(function () {
+          el.classList.remove("hold"); void el.offsetWidth; el.classList.add("out");
+          setTimeout(function () { if (el && el.parentNode) el.parentNode.removeChild(el); el = null; root.classList.remove("casetr-in"); }, 1200);
+        }, wait);
+      };
+      document.addEventListener("DOMContentLoaded", function () { setTimeout(lift, 250); });
+      setTimeout(lift, 1800);
+    }
+  } catch (e) {}
+  /* Departure */
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest("a[data-ct-img]");
+    if (!a || e.defaultPrevented || e.button > 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || a.target === "_blank") return;
+    if (reduce || busy) { if (busy) { e.preventDefault(); e.stopImmediatePropagation(); } return; }
+    e.preventDefault(); e.stopImmediatePropagation();
+    busy = true;
+    var href = a.getAttribute("href"), d = { img: a.getAttribute("data-ct-img"), title: a.getAttribute("data-ct-title") || "", kick: "Next case", t: Date.now() };
+    try { sessionStorage.setItem(KEY, JSON.stringify(d)); } catch (x) {}
+    el = build(d); el.classList.add("on");
+    void el.offsetWidth;
+    requestAnimationFrame(function () { el.classList.add("go"); });
+    setTimeout(function () { window.location.href = href; }, 900);
+  }, true);
+  /* Back/forward cache: never leave the overlay on top of a restored page */
+  window.addEventListener("pageshow", function (ev) {
+    if (!ev.persisted) return; busy = false;
+    [].forEach.call(document.querySelectorAll(".casetr"), function (n) { n.parentNode.removeChild(n); }); root.classList.remove("casetr-in");
+  });
+})();
+</script>
 </head><body>
 <title>Arthur Barreto Portfolio</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -2473,7 +2554,7 @@ button.mm-row { cursor: pointer; }
                 <p class="card-note is-live" role="note"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="10" r="7.25"/><path d="M6.75 10.25l2.25 2.25 4.25-4.5"/></svg><span><b>Case study available.</b> See the full process and results.</span></p>
               </div>
               <div class="work-side">
-                <div class="work-cta"><a class="btn-case" href="/uber">View Case<svg class="arr" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a></div>
+                <div class="work-cta"><a class="btn-case" href="/uber" data-ct-img="/assets/video/uber-poster.jpg" data-ct-title="Crédito Pessoal · digio × Uber Conta">View Case<svg class="arr" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a></div>
               </div>
             </div>
           </article>
@@ -5133,7 +5214,7 @@ html.bp-vt::view-transition-new(root) { animation: bpReveal 0.95s cubic-bezier(0
     media.appendChild(L); layers.push(L); vids.push(bv);
     var C = document.createElement("div"); C.className = "sw-copy"; C.setAttribute("aria-hidden", "true"); C.setAttribute("inert", "");
     var cta = p.live
-      ? '<a class="sw-btn" href="' + p.href + '">View case ' + ARR + '</a>'
+      ? '<a class="sw-btn" href="' + p.href + '" data-ct-img="' + (p.img || "") + '" data-ct-title="' + plain(p.title).replace(/"/g, "&quot;") + '">View case ' + ARR + '</a>'
       : '<button class="sw-btn" type="button" data-notify="' + plain(p.title) + '">' + (p.restricted ? "Request access " : "Notify me ") + ARR + '</button>';
     C.innerHTML = '<span class="sw-badge' + (p.live ? "" : " soon") + '"><i></i>' + (p.live ? "Live" : "Content being updated") + '</span><h3>' + p.title + '</h3><p>' + p.desc + '</p><ul class="sw-tags">' + p.tags.map(function (t) { return "<li>" + t + "</li>"; }).join("") + '</ul><div class="sw-cta">' + cta + '</div>';
     copies.appendChild(C); cps.push(C);
