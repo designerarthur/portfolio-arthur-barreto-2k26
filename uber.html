@@ -224,7 +224,7 @@
 #cs-next .sw-cx .cinfo { display: grid; align-content: start; gap: 8px; flex: 1; padding: 12px 16px 16px; }
 #cs-next .sw-cx .cinfo b { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; font-size: 1rem; line-height: 1.375rem; font-weight: 600; letter-spacing: -0.02em; color: #fff; }
 #cs-next .sw-cx .ct { display: flex; flex-wrap: wrap; gap: 8px; }
-#cs-next .sw-cx .ct i { display: inline-flex; align-items: center; height: 24px; padding: 0 10px; border-radius: 12px; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.28); font-style: normal; font-size: 0.75rem; font-weight: 600; color: rgba(255, 255, 255, 0.9); white-space: nowrap; }
+#cs-next .sw-cx .ct i { display: inline-flex; align-items: center; height: 24px; padding: 0 8px; border-radius: 12px; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.28); font-style: normal; font-size: 0.75rem; font-weight: 600; color: rgba(255, 255, 255, 0.9); white-space: nowrap; }
 #cs-next .sw-cx[aria-selected="true"] { opacity: 1; transform: scale(1.03); box-shadow: 0 0 0 2px #fff, 0 24px 48px rgba(0, 0, 0, 0.5); z-index: 2; }
 #cs-next .sw-cx.is-locked { background: #141416; }
 #cs-next .sw-cx.is-locked .cmedia { background: linear-gradient(135deg, #2B2B2F, #141416); }
@@ -247,10 +247,10 @@
 .sw-dots button[aria-current="true"]::before { width: 24px; background: #fff; }
 .sw-dots button:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
 @media (max-width: 400px) {
-.sw-dots { padding: 0 2px; }
+.sw-dots { padding: 0 4px; }
 .sw-dots button { width: 24px; }
 .sw-dots button[aria-current="true"]::before { width: 20px; }
-#cs-next .sw-dock { gap: 4px; padding: 6px; }
+#cs-next .sw-dock { gap: 4px; padding: 8px; }
 }
 @media (max-width: 900px) {
 #cs-next .sw-row > li { flex-basis: min(64vw, 280px); }
@@ -264,14 +264,14 @@
 #cs-next .sw-row { padding: 20px var(--pad) 8px; }
 #cs-next .sw-row > li { flex-basis: clamp(200px, 15vw, 248px); }
 #cs-next .sw-cx { border-radius: 16px; }
-#cs-next .sw-cx .cinfo { padding: 10px 14px 12px; gap: 6px; }
+#cs-next .sw-cx .cinfo { padding: 12px 16px 12px; gap: 8px; }
 #cs-next .sw-cx .cinfo b { font-size: 0.9375rem; line-height: 1.25rem; -webkit-line-clamp: 1; }
 #cs-next .sw-cx .ct { display: none; }
 @media (min-height: 880px) {
 #cs-next .sw-cx .ct { display: flex; }
 }
 #cs-next .sw-dockwrap { margin-top: 0; }
-#cs-next .sw-dock { padding: 6px; }
+#cs-next .sw-dock { padding: 8px; }
 #cs-next .sw-dock .sw-arrow { width: 44px; height: 44px; }
 .sw-dots button { height: 40px; }
 #cs-next .sw-soon { margin-top: 4px; gap: 12px; }
@@ -1049,7 +1049,7 @@ html.locked main, html.locked .cs-fixed, html.locked .cs-progress { visibility: 
 #more .cinfo b { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; font-size: 1.125rem; line-height: 1.5rem; font-weight: 700; letter-spacing: -0.02em; color: #fff; }
 #more .cinfo .cd { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; font-size: 0.875rem; line-height: 1.375rem; color: rgba(255, 255, 255, 0.76); }
 #more .cinfo .ct { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
-#more .cinfo .ct i { display: inline-flex; align-items: center; height: 24px; padding: 0 10px; border-radius: 12px; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.28); font-style: normal; font-size: 0.75rem; font-weight: 600; color: rgba(255, 255, 255, 0.9); white-space: nowrap; }
+#more .cinfo .ct i { display: inline-flex; align-items: center; height: 24px; padding: 0 8px; border-radius: 12px; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.28); font-style: normal; font-size: 0.75rem; font-weight: 600; color: rgba(255, 255, 255, 0.9); white-space: nowrap; }
 /* the selected card is the evident one: full opacity, a little larger, white ring */
 #more .cx[aria-selected="true"] { opacity: 1; transform: scale(1.03); box-shadow: 0 0 0 2px #fff, 0 24px 48px rgba(0, 0, 0, 0.5); z-index: 2; }
 #more .cx.is-locked { background: #141416; }
@@ -1078,7 +1078,7 @@ html.locked main, html.locked .cs-fixed, html.locked .cs-progress { visibility: 
 .dk-dots li:has(button[aria-current="true"]) { margin-inline: 0; }
 @media (min-width: 901px) { #more .rowwrap { margin-inline: -24px; } #more .row { padding-inline: 24px; scroll-padding-inline: 24px; } }
 @media (max-width: 900px) { #more .row > li { flex-basis: min(78vw, 340px); } #more .rowhead { margin-top: 40px; } }
-@media (max-width: 400px) { .dk-dots { padding: 0 2px; } .dk-dots button { width: 24px; } .dk-dots button[aria-current="true"]::before { width: 20px; } .dock { gap: 4px; padding: 6px; } }
+@media (max-width: 400px) { .dk-dots { padding: 0 4px; } .dk-dots button { width: 24px; } .dk-dots button[aria-current="true"]::before { width: 20px; } .dock { gap: 4px; padding: 8px; } }
 @media (prefers-reduced-motion: reduce) { #more .cx, #more .cmedia img, .dk-dots button::before { transition: none; } }
 /* Notify strip: plain text, button below, no box */
 .soon-strip { flex-direction: column; align-items: flex-start; gap: 16px; max-width: 560px; padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
