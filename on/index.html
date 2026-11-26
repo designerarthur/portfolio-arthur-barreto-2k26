@@ -2955,7 +2955,7 @@ button.mm-row { cursor: pointer; }
       @media (prefers-reduced-motion: reduce) { .bb .bb-img { transform: none !important; } .bb .bb-copy, .bb .bb-copy > *, .bb .bb-row > li { opacity: 1 !important; transform: none !important; transition: none !important; } .bb a.bb-tile:hover { transform: none; } }
     </style>
     <div class="bb-stage" id="bb-stage">
-      <div class="bb-media" aria-hidden="true"><img class="bb-img" id="bb-img" src="assets/video/bf-artwalk-poster.jpg" alt="" decoding="async"><video class="bb-video" id="bb-video" muted playsinline preload="none" disablepictureinpicture tabindex="-1" aria-hidden="true"><source src="assets/video/bf-artwalk.mp4" type="video/mp4"></video></div>
+      <div class="bb-media" aria-hidden="true"><img class="bb-img" id="bb-img" src="assets/video/bf-artwalk-poster.jpg" alt="" decoding="async"><video class="bb-video" id="bb-video" muted playsinline preload="none" disablepictureinpicture tabindex="-1" aria-hidden="true"><source src="assets/video/bf-artwalk-v2.mp4" type="video/mp4"></video></div>
       <div class="bb-shade" aria-hidden="true"></div>
       <div class="bb-ctl" id="bb-ctl" role="group" aria-label="Video controls">
         <span class="bb-time" id="bb-time" aria-hidden="true">-0:00</span>
@@ -3271,7 +3271,7 @@ button.mm-row { cursor: pointer; }
           </article>
           <article class="work-card reveal" data-cat="banking" data-brand="Digio and Uber Conta" data-size="half" style="--i:1">
             <div class="work-preview">
-              <video class="pv-video" id="pv-video-uc" src="assets/video/uber.mp4" poster="assets/video/uber-poster.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Uber Conta walkthrough video"></video>
+              <video class="pv-video" id="pv-video-uc" src="assets/uber/uber-conta.mp4" poster="assets/uber/uber-conta-poster.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Uber Conta walkthrough video"></video>
               <div class="pv-ctl">
                 <button class="pv-toggle" type="button" aria-label="Pause walkthrough">
                   <svg class="i-pause" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><rect x="3" y="2" width="3.5" height="12" rx="1"/><rect x="9.5" y="2" width="3.5" height="12" rx="1"/></svg>
@@ -3297,7 +3297,7 @@ button.mm-row { cursor: pointer; }
           </article>
           <article class="work-card reveal" data-cat="retail" data-brand="Artwalk" data-size="half" style="--i:2">
             <div class="work-preview">
-              <video class="pv-video" id="pv-video-bf" src="assets/video/bf-artwalk.mp4" poster="assets/video/bf-artwalk-poster.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Black Friday 2026 PLP walkthrough: the full Artwalk Nike landing page"></video>
+              <video class="pv-video" id="pv-video-bf" src="assets/video/bf-artwalk-v2.mp4" poster="assets/video/bf-artwalk-poster.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Black Friday 2026 PLP walkthrough: the full Artwalk Nike landing page"></video>
               <div class="pv-ctl">
                 <button class="pv-toggle" type="button" aria-label="Pause walkthrough">
                   <svg class="i-pause" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><rect x="3" y="2" width="3.5" height="12" rx="1"/><rect x="9.5" y="2" width="3.5" height="12" rx="1"/></svg>
@@ -3492,7 +3492,7 @@ document.addEventListener("click", function (e) {
 
         <div class="cs-hero-card" id="bf-hero">
           <div class="cs-video">
-            <video class="cs-vid" src="assets/video/bf-artwalk.mp4" poster="assets/video/bf-artwalk-poster.jpg" muted loop playsinline autoplay preload="auto" aria-label="Black Friday 2026 PLP: the Artwalk Nike landing page, built up section by section and scrolled from top to bottom"></video>
+            <video class="cs-vid" src="assets/video/bf-artwalk-v2.mp4" poster="assets/video/bf-artwalk-poster.jpg" muted loop playsinline autoplay preload="auto" aria-label="Black Friday 2026 PLP: the Artwalk Nike landing page, built up section by section and scrolled from top to bottom"></video>
           </div>
         </div>
 
@@ -6231,10 +6231,10 @@ html.bp-vt::view-transition-new(root) { animation: bpReveal 0.95s cubic-bezier(0
   function plain(h) { var t = document.createElement("textarea"); t.innerHTML = h; return t.value; }
   var ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>';
   var CASES = [
-    { title: "Cr&eacute;dito Pessoal &middot; digio &times; Uber Conta", label: "Case 02", live: true, href: "/uber", img: "assets/video/uber-poster.jpg", vid: "assets/video/uber.mp4", g: ["#CFF0E4", "#BFE3F7"], tags: ["Banking", "Fintech", "Mobile"], desc: "Fast cashout and a mobile-first app." },
+    { title: "Cr&eacute;dito Pessoal &middot; digio &times; Uber Conta", label: "Case 02", live: true, href: "/uber", img: "assets/video/uber-poster.jpg", vid: "assets/uber/uber-conta.mp4", g: ["#CFF0E4", "#BFE3F7"], tags: ["Banking", "Fintech", "Mobile"], desc: "Fast cashout and a mobile-first app." },
     { title: "Filters &middot; Authentic Feet, Artwalk, magicfeet", label: "Case 03", img: "assets/filters/cover.jpg", vid: "", g: ["#FADADD", "#E4D4F4"], tags: ["Retail", "Filters", "UX"], desc: "One filter experience across three footwear brands, on desktop and mobile." },
     { title: "Onboarding and Acquisition", label: "Case 04", img: "", vid: "", g: ["#CFF0E4", "#BFE3F7"], tags: ["Onboarding", "Login", "Acquisition"], desc: "Login and sign-up with fewer steps and clearer feedback." },
-    { title: "Black Friday 2026 PLP", label: "Case 05", live: true, href: "#case/black-friday", img: "assets/video/bf-artwalk-poster.jpg", vid: "assets/video/bf-artwalk.mp4", g: ["#FCEFB4", "#FADADD"], tags: ["Campaign", "Landing page", "CRO"], desc: "A Nike story that ends at the shelf." },
+    { title: "Black Friday 2026 PLP", label: "Case 05", live: true, href: "#case/black-friday", img: "assets/video/bf-artwalk-poster.jpg", vid: "assets/video/bf-artwalk-v2.mp4", g: ["#FCEFB4", "#FADADD"], tags: ["Campaign", "Landing page", "CRO"], desc: "A Nike story that ends at the shelf." },
     { title: "Nike Categories LP", label: "Case 06", img: "assets/next/categories.jpg", vid: "", g: ["#E4D4F4", "#CFF0E4"], tags: ["Landing page", "Categories", "VTEX IO"], desc: "A category page that guides shoppers to the right product, fast." }
   ];
   /* The row and the billboard only offer cases that can be opened now. The rest is one honest line: under maintenance, with a way to be told. */
@@ -6943,10 +6943,10 @@ html.bp-vt::view-transition-new(root) { animation: bpReveal 0.95s cubic-bezier(0
   var ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>';
   var CASES = [
     { title: "Redesign website &middot; magicfeet", label: "Case 01", live: true, href: "#case/magicfeet", img: "assets/video/poster.jpg", vid: "assets/video/case.mp4", g: ["#FCEFB4", "#FADADD"], tags: ["Retail", "VTEX IO", "CRO"], desc: "New layout for the main pages." },
-    { title: "Cr&eacute;dito Pessoal &middot; digio &times; Uber Conta", label: "Case 02", live: true, href: "/uber", img: "assets/video/uber-poster.jpg", vid: "assets/video/uber.mp4", g: ["#CFF0E4", "#BFE3F7"], tags: ["Banking", "Fintech", "Mobile"], desc: "Fast cashout and a mobile-first app." },
+    { title: "Cr&eacute;dito Pessoal &middot; digio &times; Uber Conta", label: "Case 02", live: true, href: "/uber", img: "assets/video/uber-poster.jpg", vid: "assets/uber/uber-conta.mp4", g: ["#CFF0E4", "#BFE3F7"], tags: ["Banking", "Fintech", "Mobile"], desc: "Fast cashout and a mobile-first app." },
     { title: "Filters &middot; Authentic Feet, Artwalk, magicfeet", label: "Case 03", img: "assets/filters/cover.jpg", vid: "", g: ["#FADADD", "#E4D4F4"], tags: ["Retail", "Filters", "UX"], desc: "One filter experience across three footwear brands, on desktop and mobile." },
     { title: "Onboarding and Acquisition", label: "Case 04", img: "", vid: "", g: ["#CFF0E4", "#BFE3F7"], tags: ["Onboarding", "Login", "Acquisition"], desc: "Login and sign-up with fewer steps and clearer feedback." },
-    { title: "Black Friday 2026 PLP", label: "Case 05", live: true, href: "#case/black-friday", img: "assets/video/bf-artwalk-poster.jpg", vid: "assets/video/bf-artwalk.mp4", g: ["#FCEFB4", "#FADADD"], tags: ["Campaign", "Landing page", "CRO"], desc: "A Nike story that ends at the shelf." },
+    { title: "Black Friday 2026 PLP", label: "Case 05", live: true, href: "#case/black-friday", img: "assets/video/bf-artwalk-poster.jpg", vid: "assets/video/bf-artwalk-v2.mp4", g: ["#FCEFB4", "#FADADD"], tags: ["Campaign", "Landing page", "CRO"], desc: "A Nike story that ends at the shelf." },
     { title: "Nike Categories LP", label: "Case 06", img: "assets/next/categories.jpg", vid: "", g: ["#E4D4F4", "#CFF0E4"], tags: ["Landing page", "Categories", "VTEX IO"], desc: "A category page that guides shoppers to the right product, fast." }
   ];
   /* The row and the billboard only offer cases that can be opened now. The rest is one honest line: under maintenance, with a way to be told. */
